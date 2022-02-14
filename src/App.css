@@ -15,7 +15,7 @@
 
 .App-header {
     width: 100%;
-    background-color: #282c34;
+    background-color: #39C5BB;
     min-height: 40vh;
     display: flex;
     flex-direction: column;
@@ -23,6 +23,23 @@
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
+}
+
+.APP-Col_1{
+    width: 100%;
+    height: 100%;
+    background-color: #ee286e;
+}
+
+.APP-Col_2{
+    width: 100%;
+    height: 100%;
+    background-color: #ee286e;
+}
+
+.APP-Comment{
+    width: 100%;
+    height: 100%;
 }
 
 .App-link {
