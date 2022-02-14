@@ -19,7 +19,7 @@ function App(): JSX.Element {
                 src={process.env.PUBLIC_URL + "/MIKU.jpeg"}
                 width="600"
                 height="403"
-                alt="logo"
+                alt="Hatsune Miku's picture"
             />
 
             <div>
