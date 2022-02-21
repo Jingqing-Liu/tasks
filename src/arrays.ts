@@ -5,7 +5,10 @@
  * the number twice.
  */
 export function bookEndList(numbers: number[]): number[] {
-    return numbers;
+    const newbookList = [...numbers];
+    return newbookList.length === 0
+        ? []
+        : [newbookList[0], newbookList[newbookList.length - 1]];
 }
 
 /**
@@ -13,7 +16,8 @@ export function bookEndList(numbers: number[]): number[] {
  * number has been tripled (multiplied by 3).
  */
 export function tripleNumbers(numbers: number[]): number[] {
-    return numbers;
+    const tripled = numbers.map((number: number): number => number * 3);
+    return tripled;
 }
 
 /**
@@ -21,7 +25,10 @@ export function tripleNumbers(numbers: number[]): number[] {
  * the number cannot be parsed as an integer, convert it to 0 instead.
  */
 export function stringsToIntegers(numbers: string[]): number[] {
-    return [];
+    const stringToInteger = numbers.map((number: string): number =>
+        parseInt(number, 10).toString() === number ? parseInt(number, 10) : 0
+    );
+    return stringToInteger;
 }
 
 /**
@@ -32,7 +39,13 @@ export function stringsToIntegers(numbers: string[]): number[] {
  */
 // Remember, you can write functions as lambdas too! They work exactly the same.
 export const removeDollars = (amounts: string[]): number[] => {
-    return [];
+    const dollars = amounts.map((price: string): string =>
+        price.substring(0, 1) === "$" ? price.substring(1) : price
+    );
+    const dollarss = dollars.map((price: string): number =>
+        parseInt(price, 10).toString() === price ? parseInt(price, 10) : 0
+    );
+    return dollarss;
 };
 
 /**
@@ -41,7 +54,16 @@ export const removeDollars = (amounts: string[]): number[] => {
  * in question marks ("?").
  */
 export const shoutIfExclaiming = (messages: string[]): string[] => {
-    return [];
+    const newmessages = messages.map((message: string): string =>
+        message.substring(message.length - 1, message.length) === "!"
+            ? message.toUpperCase()
+            : message
+    );
+    const newnewmessages = newmessages.filter(
+        (message: string): boolean =>
+            message.substring(message.length - 1, message.length) !== "?"
+    );
+    return newnewmessages;
 };
 
 /**
@@ -49,7 +71,8 @@ export const shoutIfExclaiming = (messages: string[]): string[] => {
  * 4 letters long.
  */
 export function countShortWords(words: string[]): number {
-    return 0;
+    const ShortWords = words.filter((word: string): boolean => word.length < 4);
+    return ShortWords.length;
 }
 
 /**
@@ -58,7 +81,11 @@ export function countShortWords(words: string[]): number {
  * then return true.
  */
 export function allRGB(colors: string[]): boolean {
-    return false;
+    const RGB = colors.map((color: string): boolean =>
+        color === "red" || color === "blue" || color === "green" ? true : false
+    );
+    const TF = RGB.reduce((judge: boolean, tf: boolean) => judge === tf, true);
+    return TF;
 }
 
 /**
@@ -69,7 +96,14 @@ export function allRGB(colors: string[]): boolean {
  * And the array [] would become "0=0".
  */
 export function makeMath(addends: number[]): string {
-    return "";
+    const newaddends = [...addends];
+    const newaddends2 = [...addends];
+    const sum = newaddends.reduce(
+        (currentTotal: number, num: number) => currentTotal + num,
+        0
+    );
+    const thePrices = newaddends2.join("+");
+    return addends.length === 0 ? "0=0" : sum + "=" + thePrices;
 }
 
 /**
@@ -82,5 +116,16 @@ export function makeMath(addends: number[]): string {
  * And the array [1, 9, 7] would become [1, 9, 7, 17]
  */
 export function injectPositive(values: number[]): number[] {
-    return [];
+    const newvalue = [...values];
+    const firstnegative = newvalue.findIndex((num: number): boolean => num < 0);
+    const newvalues = [...values];
+    firstnegative !== -1 ? newvalues.splice(firstnegative) : newvalues;
+    const sum = newvalues.reduce(
+        (currentTotal: number, num: number) => currentTotal + num,
+        0
+    );
+    firstnegative !== -1
+        ? newvalue.splice(firstnegative + 1, 0, sum)
+        : newvalue.splice(values.length, 0, sum);
+    return newvalue;
 }
