@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import { Answer } from "./interfaces/answer";
 import { Question, QuestionType } from "./interfaces/question";
 import { makeBlankQuestion, duplicateQuestion } from "./objects";
@@ -177,6 +176,23 @@ export function addNewQuestion(
  * the Questions are the same EXCEPT for the one with the given `targetId`. That
  * Question should be the same EXCEPT that its name should now be `newName`.
  */
+export function rename(
+    question: Question,
+    targetId: number,
+    newName: string
+): Question {
+    let answer: Question;
+    if (question.id === targetId) {
+        answer = {
+            ...question,
+            name: newName
+        };
+    } else {
+        answer = { ...question };
+    }
+    return answer;
+}
+
 export function renameQuestionById(
     questions: Question[],
     targetId: number,
@@ -185,10 +201,7 @@ export function renameQuestionById(
     return questions.map(
         (question: Question): Question =>
             question.id === targetId
-                ? {
-                      ...question,
-                      name: question.id === targetId ? newName : question.name
-                  }
+                ? rename(question, targetId, newName)
                 : { ...question }
     );
 }
@@ -200,6 +213,22 @@ export function renameQuestionById(
  * AND if the `newQuestionType` is no longer "multiple_choice_question" than the `options`
  * must be set to an empty list.
  */
+
+export function changetype(
+    list: Question,
+    newQuestionType: QuestionType
+): Question {
+    const copy = { ...list };
+    copy.type = newQuestionType;
+    return copy;
+}
+
+export function changeoption(list: Question): Question {
+    const copy = { ...list };
+    copy.options = [];
+    return copy;
+}
+
 export function changeQuestionTypeById(
     questions: Question[],
     targetId: number,
@@ -208,19 +237,13 @@ export function changeQuestionTypeById(
     const part1 = questions.map(
         (question: Question): Question =>
             question.id === targetId
-                ? {
-                      ...question,
-                      type: newQuestionType
-                  }
+                ? changetype(question, newQuestionType)
                 : { ...question }
     );
     return part1.map(
         (question: Question): Question =>
             question.type !== "multiple_choice_question"
-                ? {
-                      ...question,
-                      options: []
-                  }
+                ? changeoption(question)
                 : { ...question }
     );
 }
@@ -235,14 +258,23 @@ export function changeQuestionTypeById(
  * can make it simpler! Break down complicated tasks into little pieces.
  */
 
-export function changeIndex(
-    list: string[],
+export function changeoptions(
+    question: Question,
     targetOptionIndex: number,
-    newOption: string
-): string[] {
-    const copy = [...list];
-    copy[targetOptionIndex] = newOption;
-    return copy;
+    newOption: string,
+    targetId: number
+): Question {
+    let answer: Question;
+    if (question.id === targetId) {
+        answer = {
+            ...question,
+            options: [...question.options]
+        };
+        answer.options.splice(targetOptionIndex, 1, newOption);
+    } else {
+        answer = { ...question };
+    }
+    return answer;
 }
 
 export function editOption(
@@ -251,25 +283,21 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string
 ) {
-    const part1 = questions.map(
-        (question: Question): Question =>
-            question.id === targetId
-                ? targetOptionIndex === -1
-                    ? {
-                          ...question,
-                          options: [...question.options, newOption]
-                      }
-                    : {
-                          ...question,
-                          options: changeIndex(
-                              [...question.options],
-                              targetOptionIndex,
-                              newOption
-                          )
-                      }
-                : { ...question }
-    );
-    return part1;
+    let answer: Question[];
+    if (targetOptionIndex === -1) {
+        answer = questions.map(
+            (question: Question): Question =>
+                question.id === targetId
+                    ? { ...question, options: [...question.options, newOption] }
+                    : { ...question }
+        );
+    } else {
+        answer = questions.map(
+            (question: Question): Question =>
+                changeoptions(question, targetOptionIndex, newOption, targetId)
+        );
+    }
+    return answer;
 }
 
 /***
