@@ -176,22 +176,6 @@ export function addNewQuestion(
  * the Questions are the same EXCEPT for the one with the given `targetId`. That
  * Question should be the same EXCEPT that its name should now be `newName`.
  */
-export function rename(
-    question: Question,
-    targetId: number,
-    newName: string
-): Question {
-    let answer: Question;
-    if (question.id === targetId) {
-        answer = {
-            ...question,
-            name: newName
-        };
-    } else {
-        answer = { ...question };
-    }
-    return answer;
-}
 
 export function renameQuestionById(
     questions: Question[],
@@ -201,7 +185,7 @@ export function renameQuestionById(
     return questions.map(
         (question: Question): Question =>
             question.id === targetId
-                ? rename(question, targetId, newName)
+                ? { ...question, name: newName }
                 : { ...question }
     );
 }
@@ -214,21 +198,6 @@ export function renameQuestionById(
  * must be set to an empty list.
  */
 
-export function changetype(
-    list: Question,
-    newQuestionType: QuestionType
-): Question {
-    const copy = { ...list };
-    copy.type = newQuestionType;
-    return copy;
-}
-
-export function changeoption(list: Question): Question {
-    const copy = { ...list };
-    copy.options = [];
-    return copy;
-}
-
 export function changeQuestionTypeById(
     questions: Question[],
     targetId: number,
@@ -237,13 +206,13 @@ export function changeQuestionTypeById(
     const part1 = questions.map(
         (question: Question): Question =>
             question.id === targetId
-                ? changetype(question, newQuestionType)
+                ? { ...question, type: newQuestionType }
                 : { ...question }
     );
     return part1.map(
         (question: Question): Question =>
             question.type !== "multiple_choice_question"
-                ? changeoption(question)
+                ? { ...question, options: [] }
                 : { ...question }
     );
 }
@@ -307,13 +276,13 @@ export function editOption(
  * function you defined previously; the `newId` is the parameter to use for the duplicate's ID.
  */
 export function InsertIndex(
-    list: Question[],
+    question: Question[],
     Index: number,
     newquestion: Question
 ): Question[] {
-    const copy = [...list];
-    copy.splice(Index + 1, 0, newquestion);
-    return copy;
+    const answer = [...question];
+    answer.splice(Index + 1, 0, newquestion);
+    return answer;
 }
 
 export function duplicateQuestionInArray(
