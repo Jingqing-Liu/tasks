@@ -5,11 +5,11 @@ export const COLORS = ["red", "blue", "green"];
 const DEFAULT_COLOR_INDEX = 0;
 
 interface color {
-    color: () => void;
+    newcolor: () => void;
 }
 
-function ChangeColor({ color }: color): JSX.Element {
-    return <Button onClick={color}>Next Color</Button>;
+function ChangeColor({ newcolor }: color): JSX.Element {
+    return <Button onClick={newcolor}>Next Color</Button>;
 }
 
 function ColorPreview({ colorindex }: { colorindex: number }): JSX.Element {
@@ -36,7 +36,7 @@ export function ColoredBox(): JSX.Element {
             <h3>Colored Box</h3>
             <span>The current color is: {COLORS[DEFAULT_COLOR_INDEX]}</span>
             <div>
-                <ChangeColor color={newcolorindex}></ChangeColor>
+                <ChangeColor newcolor={newcolorindex}></ChangeColor>
                 <ColorPreview colorindex={colorIndex}></ColorPreview>
             </div>
         </div>
