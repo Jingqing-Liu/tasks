@@ -21,7 +21,7 @@ export function StartAttempt(): JSX.Element {
 
     return (
         <div>
-            {attempts}
+            <span>{attempts}</span>
             <div>
                 <Button
                     onClick={clickStartQuiz}
