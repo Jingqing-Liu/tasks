@@ -58,4 +58,16 @@ describe("ChooseTeam Component tests", () => {
         expect(currentTeam).toHaveLength(1);
         expect(currentTeam[0].textContent).toEqual(fourth.textContent);
     });
+    test("Team member already there", () => {
+        const [, second, third, , fifth] = screen.queryAllByRole("button");
+        third.click();
+        third.click();
+        second.click();
+        fifth.click();
+        const currentTeam = screen.queryAllByRole("listitem");
+        expect(currentTeam).toHaveLength(3);
+        expect(currentTeam[0].textContent).toEqual(third.textContent);
+        expect(currentTeam[1].textContent).toEqual(second.textContent);
+        expect(currentTeam[2].textContent).toEqual(fifth.textContent);
+    });
 });
