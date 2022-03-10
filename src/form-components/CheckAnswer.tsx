@@ -19,7 +19,7 @@ export function CheckAnswer({
         <div>
             <h3>Check Answer</h3>
             <Form.Control value={answer} onChange={updateAnswer} />
-            <div>{answer === expectedAnswer ? "✔️" : "❌"}. </div>
+            <div>Your answer is {answer === expectedAnswer ? "✔️" : "❌"}.</div>
         </div>
     );
 }
