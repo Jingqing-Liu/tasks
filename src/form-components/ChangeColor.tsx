@@ -4,15 +4,15 @@ import { Form } from "react-bootstrap";
 type ChangeEvent = React.ChangeEvent<HTMLInputElement>;
 
 const colorlist = [
-    "Red",
-    "Blue",
-    "Green",
-    "Orange",
-    "Purple",
-    "Cyan",
-    "Magenta",
-    "White",
-    "Black"
+    "red",
+    "blue",
+    "green",
+    "orange",
+    "purple",
+    "cyan",
+    "magenta",
+    "white",
+    "black"
 ];
 
 interface color {
@@ -23,7 +23,6 @@ interface color {
 function Coloredbox({ color }: { color: string }): JSX.Element {
     return (
         <div
-            data-testid="colored-box"
             style={{
                 backgroundColor: color,
                 display: "inline-block",
@@ -51,7 +50,7 @@ function UpdateColor({ colors, setColors }: color): JSX.Element {
                     value={color}
                     checked={color === colors}
                     key={color}
-                    label={color}
+                    label={Coloredbox({ color })}
                 />
             ))}
         </div>
@@ -64,7 +63,10 @@ export function ChangeColor(): JSX.Element {
         <div>
             <h3>Change Color</h3>
             <UpdateColor colors={colors} setColors={setColors}></UpdateColor>
-            You have chosen <Coloredbox color={colors}></Coloredbox>.
+            You have chosen{" "}
+            <span data-testid="colored-box" style={{ backgroundColor: colors }}>
+                {colors}
+            </span>
         </div>
     );
 }
