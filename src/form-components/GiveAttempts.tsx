@@ -6,10 +6,15 @@ type ChangeEvent = React.ChangeEvent<
 >;
 
 export function GiveAttempts(): JSX.Element {
-    const [lefttempts, setLeftattempts] = useState<number>(3);
-    const [newattempts, setNewattempts] = useState<number>(0);
-    const reduceAttempts = () => setLeftattempts(lefttempts - 1);
-    const makegain = () => setLeftattempts(newattempts + lefttempts);
+    const [leftattempts, setLeftattempts] = useState<string>("3");
+    const [newattempts, setNewattempts] = useState<string>("0");
+    const add = parseInt(newattempts) + parseInt(leftattempts);
+    const reduceAttempts = () =>
+        setLeftattempts((parseInt(leftattempts) - 1).toString());
+    const makegain = () =>
+        newattempts === ""
+            ? setLeftattempts(leftattempts)
+            : setLeftattempts(add.toString());
 
     return (
         <div>
@@ -19,7 +24,7 @@ export function GiveAttempts(): JSX.Element {
                     type="number"
                     value={newattempts}
                     onChange={(event: ChangeEvent) =>
-                        setNewattempts(parseInt(event.target.value))
+                        setNewattempts(event.target.value)
                     }
                 />
             </div>
@@ -27,7 +32,7 @@ export function GiveAttempts(): JSX.Element {
                 <span>
                     <Button
                         onClick={reduceAttempts}
-                        disabled={lefttempts === 0}
+                        disabled={parseInt(leftattempts) === 0}
                     >
                         use
                     </Button>
@@ -36,7 +41,7 @@ export function GiveAttempts(): JSX.Element {
                     <Button onClick={makegain}>gain</Button>
                 </span>
             </div>
-            <div>{lefttempts}</div>
+            <div>You have {leftattempts} attempts left.</div>
         </div>
     );
 }
