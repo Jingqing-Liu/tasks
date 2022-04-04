@@ -98,7 +98,7 @@ function App(): JSX.Element {
                         className="m-4"
                         onClick={handleShowAddModal}
                     >
-                        Add New Movie
+                        Add New Quiz
                     </Button>
                     <AddMovieModal
                         show={showAddModal}
