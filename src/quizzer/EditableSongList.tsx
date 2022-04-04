@@ -27,7 +27,7 @@ export function EditableSongList({
     return (
         <div>
             <Button size="sm" variant="success" onClick={addSong}>
-                Add Song
+                Add Question
             </Button>
             <ListGroup as="ol" numbered>
                 {songs.map((song: string, index: number) => (
