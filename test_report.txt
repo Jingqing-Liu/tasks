@@ -25,9 +25,9 @@ PASS src/App.test.tsx
 -----------------------------|---------|----------|---------|---------|-------------------
 File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------------|---------|----------|---------|---------|-------------------
-All files                    |     100 |      100 |     100 |     100 |                   
- src                         |     100 |      100 |     100 |     100 |                   
-  App.tsx                    |     100 |      100 |     100 |     100 |                   
+All files                    |   74.55 |    77.41 |   68.15 |   74.53 |                   
+ src                         |   91.55 |    91.42 |    86.9 |   93.05 |                   
+  App.tsx                    |      35 |        0 |   15.38 |   41.17 | 33,49-74          
   arrays.ts                  |     100 |      100 |     100 |     100 |                   
   functions.ts               |     100 |      100 |     100 |     100 |                   
   nested.ts                  |     100 |      100 |     100 |     100 |                   
@@ -52,11 +52,25 @@ All files                    |     100 |      100 |     100 |     100 |
   MultipleChoiceQuestion.tsx |     100 |      100 |     100 |     100 |                   
  src/interfaces              |       0 |        0 |       0 |       0 |                   
   answer.ts                  |       0 |        0 |       0 |       0 |                   
+  movie.ts                   |       0 |        0 |       0 |       0 |                   
   question.ts                |       0 |        0 |       0 |       0 |                   
+  song.ts                    |       0 |        0 |       0 |       0 |                   
+  watch.ts                   |       0 |        0 |       0 |       0 |                   
+ src/quizzer                 |   15.29 |    15.38 |   10.16 |   15.29 |                   
+  AddMovieModal.tsx          |   42.85 |      100 |      25 |   42.85 | 20-39,58          
+  EditableSongList.tsx       |       0 |      100 |       0 |       0 | 12-55             
+  MovieEditor.tsx            |       0 |        0 |       0 |       0 | 18-127            
+  MovieList.tsx              |     100 |      100 |     100 |     100 |                   
+  MovieView.tsx              |   42.85 |       50 |      20 |   42.85 | 25-33,50          
+  QuestionList.tsx           |       0 |      100 |       0 |       0 | 11-14             
+  Questionview.tsx           |       0 |        0 |       0 |       0 | 6-25              
+  QuizDifficulty.tsx         |     100 |      100 |     100 |     100 |                   
+  RecordControls.tsx         |      20 |    33.33 |      20 |      20 | 20-48             
+  SoundtrackEditor.tsx       |       0 |        0 |       0 |       0 | 22-203            
 -----------------------------|---------|----------|---------|---------|-------------------
 
 Test Suites: 20 passed, 20 total
 Tests:       134 passed, 134 total
 Snapshots:   0 total
-Time:        12.515 s
+Time:        12.781 s
 Ran all test suites.
